@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    instructions: {
+    steps: {
       type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: true,
     }
