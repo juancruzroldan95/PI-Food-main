@@ -1,15 +1,17 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define('Diets', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true // Automatically gets converted to SERIAL for postgres
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     }    
-  }, { timestamp: false });
+  }, {
+  timestamps: false
+});
 };
