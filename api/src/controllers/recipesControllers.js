@@ -72,6 +72,7 @@ const getRecipeById = async (id, source) => {
         as: 'diets'
       }
     });
+    if (recipe === null) recipe = { error: "Request failed with status code 404"};
   }
   return recipe;
 };
