@@ -6,7 +6,7 @@ const { Recipes, Diets } = require('../db');
 const { cleanArray, cleanObject } = require('../utilities/utilities');
 
 const getAllRecipes = async () => {
-  const dbRecipes = await Recipes.findAll({
+  let dbRecipes = await Recipes.findAll({
     attributes: ['id', 'name', 'image', 'summary', 'healthScore', 'steps'],
     include: {
       model: Diets,
@@ -15,6 +15,10 @@ const getAllRecipes = async () => {
       as: 'diets'
     }
   });
+  dbRecipes = dbRecipes.map(recipe => {
+    const transformedDiets = recipe.diets.map(diet => diet.name);
+    return { ...recipe.toJSON(), diets: transformedDiets };
+  }); // This is to transform the array of objects "diets": [{"name": "vegan"}] to an array of strings "diets": ["vegan"]
   const apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
   const response = (await axios.get(apiUrl, {
     params: {
@@ -72,6 +76,7 @@ const getRecipeById = async (id, source) => {
         as: 'diets'
       }
     });
+    recipe = { ...recipe.toJSON(), diets: recipe.diets.map(diet => diet.name) }
     if (recipe === null) recipe = { error: "Request failed with status code 404"};
   }
   return recipe;

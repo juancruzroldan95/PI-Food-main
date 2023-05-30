@@ -1,11 +1,8 @@
-const axios = require('axios');
 require('dotenv').config();
 const { API_KEY } = process.env;
-const { Diets } = require("../db");
-
-const removeDuplicates = (arr) => {
-  return arr.filter((item, index) => arr.indexOf(item) === index);
-};
+const axios = require('axios');
+const { Diets } = require('../db');
+const { removeDuplicates } = require("../utilities/utilities");
 
 const getAllDiets = async () => {
   const count = await Diets.count();

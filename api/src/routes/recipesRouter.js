@@ -1,9 +1,5 @@
 const { Router } = require('express');
-const {
-  getRecipesHandler,
-  getRecipeDetailHandler,
-  createRecipeHandler,
-} = require('../handlers/recipesHandlers');
+const { getRecipesHandler, getRecipeDetailHandler, createRecipeHandler } = require('../handlers/recipesHandlers');
 const { validate } = require('../middlewares/middlewares');
 
 const recipesRouter = Router();
