@@ -1,0 +1,44 @@
+.landing {
+  height: 100%;
+  width: 100%;
+  background-image: url("https://wallpaperaccess.com/full/6123338.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 8px 8px 16px rgb(0, 0, 0);
+}
+
+.landing p {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 4px 4px 8px rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.landing button {
+  background-color: #00843c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.landing button:hover {
+  background-color: #005926;
+}
