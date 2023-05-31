@@ -4,10 +4,16 @@
   align-items: center;
   margin: 10px;
   padding: 10px;
+  transition: transform 0.3s ease;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -30,7 +36,7 @@
 }
 
 .cardLink:hover {
-  color: #7e18c2;
+  color: #00843c;
 }
 
 .card ul {

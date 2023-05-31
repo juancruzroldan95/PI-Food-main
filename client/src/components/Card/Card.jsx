@@ -11,7 +11,7 @@ const Card = (props) => {
       </Link>
       <ul>
         {props.diets.map(diet => (
-          <li>{diet}</li>
+          <li key={diet}>{diet}</li>
         ))}
       </ul>
     </div>

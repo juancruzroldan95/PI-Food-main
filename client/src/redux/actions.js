@@ -4,7 +4,7 @@ import {
   GET_DIETS,
   GET_RECIPES_BY_NAME,
   SORT_RECIPES_BY,
-  SET_ORIGIN_FILTER,
+  SET_SOURCE_FILTER,
   SET_DIET_FILTER
 } from "./types";
 import axios from 'axios';
@@ -38,7 +38,6 @@ export const getDiets = () => {
   return async function (dispatch) {
     const response = await axios.get('http://localhost:3001/diets');
     const allDiets = response.data;
-    console.log(allDiets);
     dispatch({ type: GET_DIETS, payload: allDiets });
   };
 };
@@ -58,10 +57,10 @@ export const sortRecipesBy = (sortType) => {
   };
 };
 
-export const setOriginFilter = (originStr) => {
+export const setSourceFilter = (sourceStr) => {
   return {
-    type: SET_ORIGIN_FILTER,
-    payload: originStr
+    type: SET_SOURCE_FILTER,
+    payload: sourceStr
   };
 };
 

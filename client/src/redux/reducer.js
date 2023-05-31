@@ -4,7 +4,7 @@ import {
   GET_DIETS,
   GET_RECIPES_BY_NAME,
   SORT_RECIPES_BY,
-  SET_ORIGIN_FILTER,
+  SET_SOURCE_FILTER,
   SET_DIET_FILTER
 } from "./types";
 import { allRecipes } from './dataAux';
@@ -14,7 +14,7 @@ const initialState = {
   diets: [],
   allRecipes: allRecipes,
   dietFilter: [],
-  originFilter: ''
+  sourceFilter: 'both'
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -60,34 +60,35 @@ const rootReducer = (state = initialState, action) => {
         default:
           return { ...state }
       };
-      case SET_ORIGIN_FILTER:
+      case SET_SOURCE_FILTER:
         switch(action.payload) {
           case ('api'):
             return {
               ...state,
-              originFilter: action.payload,
-              recipes: state.allRecipes.filter((recipe) => recipe.created === false)
+              sourceFilter: action.payload,
+              recipes: state.allRecipes.filter((recipe) => !isNaN(recipe.id))
             };
-          case ('database'):
+          case ('db'):
             return {
               ...state,
-              originFilter: action.payload,
-              recipes: state.allRecipes.filter((recipe) => recipe.created === true)
+              sourceFilter: action.payload,
+              recipes: state.allRecipes.filter((recipe) => isNaN(recipe.id))
             };
           case ('both'):
             return {
               ...state,
-              originFilter: action.payload,
-              recipes: state.allRecipes.filter((recipe) => recipe.created === false || recipe.created === true)
+              sourceFilter: action.payload,
+              recipes: state.allRecipes
             };
           default:
             return {...state};
         }
 
       case SET_DIET_FILTER:
-        const filteredRecipes = state.allRecipes.filter((recipe) =>
-          recipe.diets.some((diet) => action.payload.includes(diet.name))
-        );
+        const filteredRecipes = state.allRecipes.filter((recipe) => {
+          return action.payload.every(diet => recipe.diets.includes(diet));
+          // using 'every()' method for AND condition approach, for OR condition use 'some()' method
+        });
         return {
           ...state,
           dietFilter: action.payload,
