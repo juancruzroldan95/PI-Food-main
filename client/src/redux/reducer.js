@@ -1,20 +1,23 @@
 import {
   GET_ALL_RECIPES,
+  SET_CURRENT_RECIPES,
   // GET_RECIPE_DETAIL,
   GET_DIETS,
   GET_RECIPES_BY_NAME,
-  SORT_RECIPES_BY,
+  SET_SORT_TYPE,
   SET_SOURCE_FILTER,
   SET_DIET_FILTER
 } from "./types";
 import { allRecipes } from './dataAux';
 
 const initialState = {
+  currentRecipes: [],
   recipes: [],
   diets: [],
   allRecipes: allRecipes,
   dietFilter: [],
-  sourceFilter: 'both'
+  sourceFilter: 'both',
+  sort: 'none'
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -23,8 +26,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allRecipes: action.payload,
-        recipes: action.payload,
+        recipes: action.payload
       };
+    case SET_CURRENT_RECIPES:
+      return {
+        ...state,
+        currentRecipes: action.payload
+      }
     case GET_DIETS:
       return {
         ...state,
@@ -35,28 +43,45 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: action.payload
       };
-    case SORT_RECIPES_BY:
+    case SET_SORT_TYPE:
       switch(action.payload) {
-        case ('nameAsc'):
+        case ('ascending'):
+          const sortAscRecipes = [...state.recipes]; // We create a NEW (A COPY) array using the spread operator to ensure a new array REFERENCE is returned.
+          sortAscRecipes.sort((a, b) => (a.name > b.name) ? 1 : -1); // The sort() method mutates the array in-place, so if you're directly modifying the existing state array, React may not detect the change and trigger a re-render.
           return {
             ...state,
-            recipes: state.recipes.sort((a, b) => (a.name > b.name) ? 1 : -1)
+            recipes: sortAscRecipes,
+            sort: action.payload
           };
-        case ('nameDesc'):
+        case ('descending'):
+          const sortDescRecipes = [...state.recipes];
+          sortDescRecipes.sort((a, b) => (a.name < b.name) ? 1 : -1);
           return {
             ...state,
-            recipes: state.recipes.sort((a, b) => (a.name < b.name) ? 1 : -1)
+            recipes: sortDescRecipes,
+            sort: action.payload
           };
-        case ('ratingDesc'):
+        case ('lowHealthScore'):
+          const sortTopHSRecipes = [...state.recipes];
+          sortTopHSRecipes.sort((a, b) => (a.healthScore > b.healthScore) ? 1 : -1);
           return {
             ...state,
-            recipes: state.recipes.sort((a, b) => (a.rating > b.rating) ? 1 : -1)
+            recipes: sortTopHSRecipes,
+            sort: action.payload
           };
-        case ('ratingAsc'):
+        case ('topHealthScore'):
+          const sortLowHSRecipes = [...state.recipes];
+          sortLowHSRecipes.sort((a, b) => (a.healthScore < b.healthScore) ? 1 : -1);
           return {
             ...state,
-            recipes: state.recipes.sort((a, b) => (a.rating < b.rating) ? 1 : -1)
+            recipes: sortLowHSRecipes,
+            sort: action.payload
           };
+        // case ( 'none'):
+        //   return {
+        //     ...state,
+        //     recipes: allRecipes
+        //   };
         default:
           return { ...state }
       };

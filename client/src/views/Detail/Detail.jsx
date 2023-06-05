@@ -15,6 +15,10 @@ const Detail = () => {
     getRecipeDetail();
   }, [id]);
 
+  const createMarkup = () => {
+    return {__html: recipeDetail.summary};
+  };
+
   return (
     <div>
       {recipeDetail ? (
@@ -22,8 +26,8 @@ const Detail = () => {
           <h1>{recipeDetail.name}</h1>
           <img src={recipeDetail.image} alt={recipeDetail.name} />
           <h3>Summary</h3>
-          <p>{recipeDetail.summary}</p>
-          <h3>Recipe Steps</h3>
+          <p dangerouslySetInnerHTML={createMarkup()} />
+          {recipeDetail.steps.length !== 0 && <h3>Steps</h3>}
           <ol>
             {recipeDetail.steps.map((step) => (
               <li key={step.number}>

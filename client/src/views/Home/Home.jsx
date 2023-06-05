@@ -6,6 +6,7 @@ import Sort from '../../components/Sort/Sort';
 import DietFilter from '../../components/DietFilter/DietFilter';
 import Cards from '../../components/Cards/Cards';
 import styles from './Home.module.css'
+import Pagination from '../../components/Pagination/Pagination';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.homeContainer}>
       <div className={styles.topSection}>
         <div className={styles.topLeft}>
           <SourceFilter />
@@ -34,6 +35,9 @@ const Home = () => {
         <div className={styles.rightContent}>
           <Cards />
         </div>
+      </div>
+      <div className={styles.bottomSection}>
+        <Pagination />
       </div>
     </div>
   )

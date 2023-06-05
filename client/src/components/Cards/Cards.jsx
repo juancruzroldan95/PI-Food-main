@@ -4,11 +4,12 @@ import Card from '../Card/Card';
 import styles from './Cards.module.css'
 
 const Cards = () => {
-  const recipes = useSelector((state) => state.recipes);
+  const currentRecipes = useSelector((state) => state.currentRecipes);
+  console.log("renderizo card container");
 
   return (
     <div className={styles.container}>
-      {recipes.map((recipe) => (
+      {currentRecipes.map((recipe) => (
         <Card
           key={recipe.id}
           id={recipe.id}

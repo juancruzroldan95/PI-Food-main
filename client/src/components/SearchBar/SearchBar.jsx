@@ -17,7 +17,12 @@ const SearchBar = () => {
 
   return (
     <div className={styles.searchBar}>
-      <input value={searchTerm} onChange={handleInputChange} type='search' placeholder='For example: noodles' />
+      <input
+        type='search'
+        placeholder='For example: chicken'
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
       <button onClick={handleSearch}>Search!</button>
     </div>
   )

@@ -1,39 +1,76 @@
 export const allRecipes = [
-  {
-      "id": "ec32adef-50de-41a4-9dc2-b5a67549fbcb",
-      "name": "Asado",
-      "image": "https://billiken.lat/wp-content/uploads/2022/06/asado-carne-cocinada-a-la-parrilla-quimica-SITIO.jpg",
-      "summary": "Asado is the technique and the social event of having or attending a barbecue in various South American countries, especially Argentina, Chile, Paraguay and Uruguay where it is also a traditional event. An asado usually consists of beef, pork, chicken, chorizo, and morcilla, all of which are cooked using an open fire or a grill, called 'parrilla'. Usually, red wine and side dishes such as salads accompany the main meats, which are prepared by a designated cook called the asador or parrillero.",
-      "healthScore": 10,
-      "steps": [
-          {
-              "number": 1,
-              "step": "Light the charcoal."
-          },
-          {
-              "number": 2,
-              "step": "After the charcoal has formed, put it under the grill and wait for the grill to be hot."
-          },
-          {
-              "number": 3,
-              "step": "Salt all the meat and throw it to the grill."
-          },
-          {
-              "number": 4,
-              "step": "When cooked from one side, turn around the meat."
-          },
-          {
-              "number": 5,
-              "step": "Once the meat is ready, take it off the grill, cut and serve."
-          }
-      ],
-      "diets": [
-          "gluten free",
-          "dairy free",
-          "paleolithic",
-          "primal"
-      ]
-  },
+    {
+        "id": "ddb04ada-e718-4b40-bfc3-cd214b8eb393",
+        "name": "Asado",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/65/Asado_2005.jpg",
+        "summary": "Asado is the technique and the social event of having or attending a barbecue in various South American countries, especially Argentina, Chile, Paraguay and Uruguay where it is also a traditional event. An asado usually consists of beef, pork, chicken, chorizo, and morcilla, all of which are cooked using an open fire or a grill, called 'parrilla'. Usually, red wine and side dishes such as salads accompany the main meats, which are prepared by a designated cook called the asador or parrillero.",
+        "healthScore": 10,
+        "steps": [
+            {
+                "number": 1,
+                "step": "Light the charcoal."
+            },
+            {
+                "number": 2,
+                "step": "After the charcoal has formed, put it under the grill and wait for the grill to be hot."
+            },
+            {
+                "number": 3,
+                "step": "Salt all the meat and throw it to the grill."
+            },
+            {
+                "number": 4,
+                "step": "When cooked from one side, turn around the meat."
+            },
+            {
+                "number": 5,
+                "step": "Once the meat is ready, take it off the grill, cut and serve."
+            }
+        ],
+        "diets": [
+            "gluten free",
+            "dairy free",
+            "paleolithic",
+            "primal"
+        ]
+    },
+    {
+        "id": "3711b3b1-274e-4ccb-ac95-57ed26b3189c",
+        "name": "Spanish Tortilla",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Tortilla_de_patata_-_San_Sebasti%C3%A1n.jpg/1200px-Tortilla_de_patata_-_San_Sebasti%C3%A1n.jpg",
+        "summary": "Spanish tortilla is a traditional dish from Spain. Celebrated as a national dish by Spaniards, it is an essential part of the Spanish cuisine. It is an omelette made with eggs and potatoes, optionally including onion. It is often served at room temperature as a tapa. It is commonly known in Spanish-speaking countries as tortilla de patatas, tortilla de papas, or tortilla española.",
+        "healthScore": 50,
+        "steps": [
+            {
+                "number": 1,
+                "step": "The potatoes, ideally a starchy variety, are cut into thin slices or small dice."
+            },
+            {
+                "number": 2,
+                "step": "They are then seasoned and sautéed in vegetable oil, traditionally olive oil, with sliced onions being added at this stage if used. These ingredients are stirred at a moderate temperature until they are soft but not brown."
+            },
+            {
+                "number": 3,
+                "step": "The potatoes (and onions, if included) are then removed, drained, and mixed with whisked eggs."
+            },
+            {
+                "number": 4,
+                "step": "This mixture is then returned to the pan and slowly cooked, turning the omelette to cook both sides."
+            },
+            {
+                "number": 5,
+                "step": "Once the eggs are cooked on one side, a plate is placed over the mixture so the pan can be inverted."
+            },
+            {
+                "number": 6,
+                "step": "The mixture is then slipped back into the pan to cook the other side."
+            }
+        ],
+        "diets": [
+            "dairy free",
+            "lacto ovo vegetarian"
+        ]
+    },
   {
       "id": 782585,
       "name": "Cannellini Bean and Asparagus Salad with Mushrooms",
