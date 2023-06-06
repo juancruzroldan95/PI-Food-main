@@ -164,7 +164,7 @@ const Form = () => {
     event.preventDefault();
     await axios.post("http://localhost:3001/recipes", recipe)
     .then(res => history.push(`detail/${res.data.id}`))
-    .catch(res => alert("There is already a recipe with that name"));
+    .catch(res => alert("There is already a recipe with that name or image"));
   };
 
   return (
@@ -176,22 +176,22 @@ const Form = () => {
         <div className={styles.formInput}>
           <label htmlFor="name">Name of the recipe:</label>
           <input type="text" name="name" value={recipe.name} onChange={handleFormChange} />
-          {errors.name && <span className={styles.error}>{errors.name}</span>}
+          {errors.name && <p className={styles.error}>{errors.name}</p>}
         </div>
         <div className={styles.formInput}>
           <label htmlFor="image">URL image: </label>
           <input type="text" name="image" value={recipe.image} onChange={handleFormChange} />
-          {errors.image && <span className={styles.error}>{errors.image}</span>}
+          {errors.image && <p className={styles.error}>{errors.image}</p>}
         </div>
         <div className={styles.formInput}>
           <label htmlFor="summary">Summary: </label>
           <input type="text" name="summary" value={recipe.summary} onChange={handleFormChange} />
-          {errors.summary && <span className={styles.error}>{errors.summary}</span>}
+          {errors.summary && <p className={styles.error}>{errors.summary}</p>}
         </div>
         <div className={styles.formInput}>
           <label htmlFor="healthScore">Health score: </label>
           <input type="number" name="healthScore" value={recipe.healthScore} onChange={handleFormChange} />
-          {errors.healthScore && <span className={styles.error}>{errors.healthScore}</span>}
+          {errors.healthScore && <p className={styles.error}>{errors.healthScore}</p>}
         </div>
         <div className={styles.formInput}>
           <label htmlFor="steps">Steps <span>(you can add any step you want!)</span></label>
@@ -205,7 +205,7 @@ const Form = () => {
                   value={step.step}
                   onChange={(event) => handleFormChange(event, index)}
                 />
-                {!recipe.steps[index].step && <span className={styles.error}>{errors.steps}</span>}
+                {!recipe.steps[index].step && <p className={styles.error}>{errors.steps}</p>}
                 <button className={styles.removeStepButton} type="button" onClick={() => handleDeleteStep(index)}>
                   -
                 </button>
@@ -218,19 +218,18 @@ const Form = () => {
         </div>
         <div>
           <h3 htmlFor="diets">Diets</h3>
-          {errors.diets && <span className={styles.error}> ({errors.diets})</span>}
+          {errors.diets && <p className={styles.error}>({errors.diets})</p>}
           {diets.map((diet) => (
             <div className={styles.dietItem} key={diet.id}>
-              <input type="checkbox" name="diets" value={diet.id} onChange={handleFormChange}/>
-              <span>{diet.name}</span>
+              <input type="checkbox" name="diets" value={diet.id} onChange={handleFormChange} className={styles.dietCheckbox}/>
+              <span className={styles.dietLabel}>{diet.name}</span>
             </div>
           ))}
         </div>
         <div>
           <button
             type="submit"
-            className={styles.submitButton}
-            disabled={!isFormValid()}
+            className={`${styles.submitButton} ${isFormValid() === false && styles.disabled}`}
           >
             Create recipe!
           </button>

@@ -27,7 +27,7 @@
 }
 
 .dietCheckbox:hover {
-  background-color: lightgray;
+  background-color: rgb(232, 232, 232);
 }
 
 .dietCheckbox::before {
