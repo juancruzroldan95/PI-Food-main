@@ -33,10 +33,8 @@ const Form = () => {
     switch (name) {
       case "name":
         if (recipe.name.length < 4) {
-          console.log("set name error")
           setErrors({ ...errors, name: NAME_ERROR_MSG});
         } else {
-          console.log("todo bien en name")
           setErrors({ ...errors, name: ''});
         };
         if (!recipe.name) setErrors({ ...errors, name: `${name} cant be empty`})
@@ -166,7 +164,7 @@ const Form = () => {
     event.preventDefault();
     await axios.post("http://localhost:3001/recipes", recipe)
     .then(res => history.push(`detail/${res.data.id}`))
-    .catch(res => alert(res));
+    .catch(res => alert("There is already a recipe with that name"));
   };
 
   return (

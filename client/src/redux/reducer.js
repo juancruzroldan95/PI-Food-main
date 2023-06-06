@@ -77,39 +77,69 @@ const rootReducer = (state = initialState, action) => {
             recipes: sortLowHSRecipes,
             sort: action.payload
           };
-        // case ( 'none'):
-        //   return {
-        //     ...state,
-        //     recipes: allRecipes
-        //   };
         default:
           return { ...state }
       };
-      case SET_SOURCE_FILTER:
-        switch(action.payload) {
-          case ('api'):
+    case SET_SOURCE_FILTER:
+      switch(action.payload) {
+        case ('api'):
+          if (state.dietFilter.length === 0) {
             return {
               ...state,
               sourceFilter: action.payload,
               recipes: state.allRecipes.filter((recipe) => !isNaN(recipe.id))
             };
-          case ('db'):
+          } else {
+            const allApiRecipes = state.allRecipes.filter((recipe) => !isNaN(recipe.id));
+            const filteredRecipes = allApiRecipes.filter((recipe) => {
+              return state.dietFilter.every(diet => recipe.diets.includes(diet));
+            });
+            return {
+              ...state,
+              sourceFilter: action.payload,
+              recipes: filteredRecipes
+            };
+          }
+        case ('db'):
+          if (state.dietFilter.length === 0) {
             return {
               ...state,
               sourceFilter: action.payload,
               recipes: state.allRecipes.filter((recipe) => isNaN(recipe.id))
             };
-          case ('both'):
+          } else {
+            const allDbRecipes = state.allRecipes.filter((recipe) => isNaN(recipe.id));
+            const filteredRecipes = allDbRecipes.filter((recipe) => {
+              return state.dietFilter.every(diet => recipe.diets.includes(diet));
+            });
+            return {
+              ...state,
+              sourceFilter: action.payload,
+              recipes: filteredRecipes
+            };
+          }
+        case ('both'):
+          if (!state.dietFilter.length === 0) {
             return {
               ...state,
               sourceFilter: action.payload,
               recipes: state.allRecipes
             };
-          default:
-            return {...state};
-        }
-
-      case SET_DIET_FILTER:
+          } else {
+            const filteredRecipes = state.allRecipes.filter((recipe) => {
+              return state.dietFilter.every(diet => recipe.diets.includes(diet));
+            });
+            return {
+              ...state,
+              sourceFilter: action.payload,
+              recipes: filteredRecipes
+            };
+          }
+        default:
+          return {...state};
+      };
+    case SET_DIET_FILTER:
+      if (state.sourceFilter === "both") {
         const filteredRecipes = state.allRecipes.filter((recipe) => {
           return action.payload.every(diet => recipe.diets.includes(diet));
           // using 'every()' method for AND condition approach, for OR condition use 'some()' method
@@ -119,6 +149,30 @@ const rootReducer = (state = initialState, action) => {
           dietFilter: action.payload,
           recipes: filteredRecipes
         };
+      };
+      if (state.sourceFilter === "api") {
+        const allApiRecipes = state.allRecipes.filter((recipe) => !isNaN(recipe.id));
+        const filteredRecipes = allApiRecipes.filter((recipe) => {
+          return action.payload.every(diet => recipe.diets.includes(diet));
+        });
+        return {
+          ...state,
+          dietFilter: action.payload,
+          recipes: filteredRecipes
+        };
+      };
+      if (state.sourceFilter === "db") {
+        const allDbRecipes = state.allRecipes.filter((recipe) => isNaN(recipe.id));
+        const filteredRecipes = allDbRecipes.filter((recipe) => {
+          return action.payload.every(diet => recipe.diets.includes(diet));
+        });
+        return {
+          ...state,
+          dietFilter: action.payload,
+          recipes: filteredRecipes
+        };
+      };
+      break;
     default:
       return {...state};
   };

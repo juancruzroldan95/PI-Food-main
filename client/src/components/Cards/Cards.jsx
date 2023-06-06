@@ -5,8 +5,7 @@ import styles from './Cards.module.css'
 
 const Cards = () => {
   const currentRecipes = useSelector((state) => state.currentRecipes);
-  console.log("renderizo card container");
-
+  
   return (
     <div className={styles.container}>
       {currentRecipes.map((recipe) => (

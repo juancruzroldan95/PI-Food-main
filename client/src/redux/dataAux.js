@@ -71,6 +71,27 @@ export const allRecipes = [
             "lacto ovo vegetarian"
         ]
     },
+    {
+        "id": "ae85decf-ab41-4243-8ba1-2fd9e7743375",
+        "name": "Arroz blanco",
+        "image": "https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco.jpg",
+        "summary": "Tipico arroz blanco simple",
+        "healthScore": 90,
+        "steps": [
+            {
+                "number": 1,
+                "step": "Hervir agua"
+            },
+            {
+                "number": 2,
+                "step": "Poner el arroz y en 15 min esta"
+            }
+        ],
+        "diets": [
+            "dairy free",
+            "lacto ovo vegetarian"
+        ]
+    },
   {
       "id": 782585,
       "name": "Cannellini Bean and Asparagus Salad with Mushrooms",

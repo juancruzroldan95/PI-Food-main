@@ -5,8 +5,28 @@
   /* border: 2px solid black; */
 }
 
-.sourceFilter button {
-  padding: 10px;
-  margin: 10px 10px 0px 10px;
+.sourceFilterButton {
+  padding: 12px;
+  margin: 15px 10px 0px 10px;
+  border-radius: 10px 10px 0px 0px;
+  border-color: transparent;
+  border-bottom: 3.5px solid #00843c;
+  color: rgb(77, 77, 77);
+  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
   cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+.sourceFilterButton.selected {
+  padding: 12px;
+  margin: 15px 10px 0px 10px;
+  background-color: white;
+  border: 3.5px solid #00843c;
+  border-bottom: 3.5px solid white;
+  color: black;
 }

@@ -8,7 +8,7 @@ const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const recipes = useSelector((state) => state.recipes);
   const totalCount = recipes.length;
-  const siblingCount = 1;
+  const siblingCount = 2;
   const pageSize = 9;
   const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ const Pagination = () => {
          
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
-          return <li className={styles.paginationItemDots}>&#8230;</li>;
+          return <li key="dots" className={styles.paginationItemDots}>&#8230;</li>;
         }
 		
         // Render our Page Pills
