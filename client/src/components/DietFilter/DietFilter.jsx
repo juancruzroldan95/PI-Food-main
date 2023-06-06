@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDietFilter } from '../../redux/actions';
+import styles from '../DietFilter/DietFilter.module.css';
 
 const DietFilter = () => {
   const diets = useSelector((state) => state.diets);
+  const recipes = useSelector((state) => state.recipes);
   let dietFilter = useSelector((state) => state.dietFilter);
   const dispatch = useDispatch();
 
@@ -17,16 +19,21 @@ const DietFilter = () => {
     }
   };
 
+  const countRecipesPerDiet = (diet) => {
+    const filteredRecipes = recipes.filter((recipe) => recipe.diets.includes(diet));
+    return filteredRecipes.length;
+  };
+
   return (
     <div>
       <h3>Diets</h3>
-      <div>
+      <div className={styles.dietFilter}>
         {diets.map((diet) => (
-          <div key={diet.id}>
-            <input id={diet.id} type="checkbox" value={diet.name} onChange={handleDietChange}/>
-            <label title={diet.name}>
+          <div key={diet.id} className={styles.dietFilterItem}>
+            <input id={diet.id} type="checkbox" value={diet.name} onChange={handleDietChange} className={styles.dietCheckbox}/>
+            <label title={diet.name} className={styles.dietLabel}>
               <span>{diet.name}</span>
-              {/* <span>(x)</span> */}
+              <span> ({countRecipesPerDiet(diet.name)})</span>
             </label>
           </div>
         ))}
