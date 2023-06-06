@@ -34,7 +34,7 @@ const getAllRecipes = async () => {
 
 const searchRecipesByName = async (name) => {
   const Op = Sequelize.Op;
-  const filteredDbRecipes = await Recipes.findAll({
+  let filteredDbRecipes = await Recipes.findAll({
     attributes: ['id', 'name', 'image', 'summary', 'healthScore', 'steps'],
     include: {
       model: Diets,
@@ -47,6 +47,10 @@ const searchRecipesByName = async (name) => {
         [Op.iLike]: `%${name}%` // ILIKE '%name' (case insensitive) (PG only)
       }
     }
+  });
+  filteredDbRecipes = filteredDbRecipes.map(recipe => {
+    const transformedDiets = recipe.diets.map(diet => diet.name);
+    return { ...recipe.toJSON(), diets: transformedDiets };
   });
   const apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
   const response = (await axios.get(apiUrl, {
