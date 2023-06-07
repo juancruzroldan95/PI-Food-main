@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './Nav.module.css';
 
 const Nav = () => {
+
   return (
     <div className={styles.nav}>
       <Link to="/home" className={styles.navLink}>Home</Link>

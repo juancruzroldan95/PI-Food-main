@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getRecipesByName } from '../../redux/actions';
 import styles from './SearchBar.module.css';
@@ -11,7 +12,7 @@ const SearchBar = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSearch = (e) => {
+  const handleSearch = () => {
     dispatch(getRecipesByName(searchTerm));
   };
 
@@ -23,7 +24,7 @@ const SearchBar = () => {
         value={searchTerm}
         onChange={handleInputChange}
       />
-      <button onClick={handleSearch}>Search!</button>
+      <Link to="/home"><button onClick={handleSearch}>Search!</button></Link>
     </div>
   )
 };
