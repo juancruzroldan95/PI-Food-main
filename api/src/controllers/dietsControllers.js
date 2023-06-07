@@ -29,6 +29,12 @@ const getAllDiets = async () => {
   return dbDiets;
 };
 
+const createDiet = async (name) => {
+  const newDiet = await Diets.create({ name });
+  return newDiet;
+};
+
 module.exports = {
-  getAllDiets
+  getAllDiets,
+  createDiet
 };

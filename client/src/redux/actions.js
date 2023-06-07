@@ -9,21 +9,12 @@ import {
   SET_DIET_FILTER
 } from "./types";
 import axios from 'axios';
-import { allRecipes } from './dataAux';
-
-// export const getAllRecipes = () => {
-//   return async function (dispatch) {
-//     const response = await axios.get('http://localhost:3001/recipes');
-//     const allRecipes = response.data;
-//     console.log(allRecipes);
-//     dispatch({ type: GET_ALL_RECIPES, payload: allRecipes });
-//   };
-// };
 
 export const getAllRecipes = () => {
-  return {
-    type: GET_ALL_RECIPES,
-    payload: allRecipes
+  return async function (dispatch) {
+    const response = await axios.get('http://localhost:3001/recipes');
+    const allRecipes = response.data;
+    dispatch({ type: GET_ALL_RECIPES, payload: allRecipes });
   };
 };
 

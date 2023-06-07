@@ -180,3 +180,12 @@
   pointer-events: none;
   cursor: default;
 }
+/* 
+<div>
+      <div>
+        <label htmlFor=""></label>
+        <input type="text" />
+      </div>
+      {error && <p>{error}</p>}
+    </div>
+    */

@@ -77,6 +77,12 @@ const rootReducer = (state = initialState, action) => {
             recipes: sortLowHSRecipes,
             sort: action.payload
           };
+        case ('none'):
+          return {
+            ...state,
+            recipes: state.allRecipes,
+            sort: action.payload
+          }
         default:
           return { ...state }
       };

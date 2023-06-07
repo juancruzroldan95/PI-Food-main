@@ -6,6 +6,6 @@ const recipesRouter = Router();
 
 recipesRouter.get('/', getRecipesHandler);
 recipesRouter.get('/:idRecipe', getRecipeDetailHandler);
-recipesRouter.post('/', validate, createRecipeHandler);
+recipesRouter.post('/', validate, createRecipeHandler); //express-validator library - validate params y query
 
 module.exports = recipesRouter;
